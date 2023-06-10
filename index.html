@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css"-->
+<!--          type="text/css">-->
+    <style>
+        .map {
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        body {
+            overflow: hidden;
+        }
+    </style>
+<!--    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.4.0/ol.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@v7.4.0/dist/ol.js"></script>
+    <title>OpenLayers example</title>
+</head>
+
+<body>
+<div id="map" class="map"></div>
+<script type="text/javascript">
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+            // new ol.layer.Tile({
+            //     source: new ol.source.OSM(),
+            // }),
+            new ol.layer.Tile({
+                /*source: new ol.source.OSM()*/
+                source: new ol.source.XYZ({
+                    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                    maxZoom: 19,
+                    sphericalMercator: true
+                })
+            }),
+            // new ol.layer.Tile({
+            //     /*source: new ol.source.OSM()*/
+            //     source: new ol.source.XYZ({
+            //         url: 'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer/{z}/{y}/{x}',
+            //         maxZoom: 19,
+            //         sphericalMercator: true
+            //     })
+            // })
+        ],
+        view: new ol.View({
+            // center: ol.proj.fromLonLat([8.73, 47.41]),
+            center: ol.proj.fromLonLat([0, 0]),
+            // zoom: 4,
+            zoom: 1
+        })
+    });
+</script>
+</body>
+
+</html>
